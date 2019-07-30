@@ -23,6 +23,7 @@ public class UserLoader {
 	@PostConstruct
 	public void init() {
 		User user = new User();
+		user.setEmail("folaukaveinga@gmail.com");
 		user.setAge(3);
 		user.setName("Folau");
 		
