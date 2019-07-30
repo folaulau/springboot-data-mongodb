@@ -33,8 +33,14 @@ public class UserLoader {
 		
 		
 		User user1 = new User();
+		
 		user1.setAge(13);
 		user1.setName("Folau template");
 		mongoTemplate.insert(user1);
+		
+		// save if id doesn't exist
+		// update if id exists
+		user1.setId("5d400c8b1dab0ae965ad8152");
+		mongoTemplate.save(user1);
 	}
 }
