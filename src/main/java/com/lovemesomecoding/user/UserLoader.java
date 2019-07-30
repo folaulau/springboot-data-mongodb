@@ -5,6 +5,9 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
@@ -43,5 +46,12 @@ public class UserLoader {
 		// update if id exists
 		user1.setId("5d400c8b1dab0ae965ad8152");
 		mongoTemplate.save(user1);
+		
+		Pageable pageableRequest = PageRequest.of(0, 15);
+		
+		Page<User> page = userRepository.findAll(pageableRequest);
+		
+		log.info("users:{}", ObjectUtils.toJson(page.getContent()));
+		
 	}
 }
